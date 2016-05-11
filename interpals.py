@@ -27,7 +27,7 @@ VISITED_USERS_FILE = "users_visited.txt"
 
 # Set this variable to True to output debug log,
 # or False for more concise output
-DEBUG = False
+DEBUG = True
 
 ##
 # END OF CONFIG VARIABLES
@@ -40,7 +40,7 @@ f = open(VISITED_USERS_FILE, 'a+')
 processedUsers = [line.strip() for line in f]
 print "Already processed " + str(len(processedUsers)) + " users."
 client = requests.Session()
-login = raw_input('Username (mail): ')
+login = raw_input('Username: ')
 password = getpass.getpass('Password: ')
 payload = {'action': 'login',
            'login': login,
