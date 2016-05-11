@@ -50,7 +50,7 @@ payload = {'action': 'login',
 print "Logging in..."
 client.get("https://www.interpals.net/")
 csrf_token = client.cookies['csrf_cookieV2']
-r = client.post("https://www.interpalnet/login.php", data=payload)
+r = client.post("https://www.interpals.net/login.php", data=payload)
 print "Logged in: Starting the dance \o/"
 time.sleep(2)
 
