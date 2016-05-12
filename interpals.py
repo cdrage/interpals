@@ -52,6 +52,10 @@ print "Logging in..."
 client.get("https://www.interpals.net/")
 r = client.post("https://www.interpals.net/login.php", data=payload)
 
+if r.text.find(login) == -1:
+    print 'ERROR: not logged in'
+    exit(1)
+    
 tree = fromstring(r.text)
 csrf_token = tree.xpath('//meta[@name="csrf-token"]/@content')[0]
 
