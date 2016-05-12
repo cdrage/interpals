@@ -6,6 +6,7 @@ import requests
 import re
 import random
 import getpass
+from lxml.html import fromstring
 
 ##
 # CONFIG VARIABLES : YOU CAN EDIT THESE VARIABLES TO CHANGE TIMER VALUES ##
@@ -49,8 +50,13 @@ payload = {'action': 'login',
 
 print "Logging in..."
 client.get("https://www.interpals.net/")
-csrf_token = client.cookies['csrf_cookieV2']
 r = client.post("https://www.interpals.net/login.php", data=payload)
+
+tree = fromstring(r.text)
+csrf_token = tree.xpath('//meta[@name="csrf-token"]/@content')[0]
+
+print "CSRF Token: %s" % csrf_token
+
 print "Logged in: Starting the dance \o/"
 time.sleep(2)
 
